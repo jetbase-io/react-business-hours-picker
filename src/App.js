@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { TimePicker } from "antd";
+import TimePickerTimes from "react-times";
 import moment from "moment";
 
 import { data } from "./components/businesshourspicker/constants";
 import BusinessHoursPicker from "./components/businesshourspicker";
+
 import "antd/dist/antd.css";
+import "react-times/css/material/default.css";
 import "./App.css";
 
 class App extends Component {
@@ -16,10 +19,25 @@ class App extends Component {
         <div className="clean" />
 
         <BusinessHoursPicker
-          /* Adding custom classNames */
           data={data}
-          activeClassName="customActiveClass" /* optional: className for an active day. isActive = true */
-          inactiveClassName="customInactiveClass" /* optional: className for an inactive day. isActive = false */
+          activeClassName="customActiveClass"
+          inactiveClassName="customInactiveClass"
+        />
+
+        <div className="clean" />
+
+        <BusinessHoursPicker
+          data={data}
+          activeClassName="reactTimes"
+          TimePicker={(defaultTime, onChange) => (
+            <TimePickerTimes
+              time={defaultTime}
+              onTimeChange={onChange}
+              theme="classic"
+              className="block"
+            />
+          )}
+          timePickerParseValue={value => `${value.hour}:${value.minute}`}
         />
 
         <div className="clean" />
@@ -27,9 +45,6 @@ class App extends Component {
         <BusinessHoursPicker
           data={data}
           TimePicker={(defaultTime, onChange) => (
-            /* optional: pass a function that returns custom time picker for time input. */
-            /* Customize your component as you wish
-                 NOTE: your component's props may defer from example */
             <TimePicker
               defaultValue={moment(defaultTime, "HH:mm")}
               onChange={onChange}
@@ -37,8 +52,6 @@ class App extends Component {
               className="block"
             />
           )}
-          /* optional: pass a function that parses the value returned by onChange function and returns string value.
-             NOTE: it is required for some components e.g, "react-time", "antd", etc. They return object as a value in onChange callback */
           timePickerParseValue={value => moment(value).format("HH:mm")}
         />
       </>

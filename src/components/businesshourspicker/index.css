@@ -3,6 +3,12 @@
   margin: 100px auto;
 }
 
+.reactTimes {
+  border: 2px solid #4e8059;
+  background-color: #8ade8f;
+  width: 130px;
+}
+
 .customActiveClass {
   border: 2px solid #462d6c;
   background-color: #563d7c;
