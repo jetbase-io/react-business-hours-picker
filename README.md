@@ -87,7 +87,7 @@ const data = [
   )}
   /* optional: pass a function that parses the value returned by onChange function and returns string value.
      NOTE: it is required for some components e.g, "react-times", "antd", etc. They return object as a value from onChange callback. You need to somehow manage it before using */
-  timePickerParseValue={value => `${hour}:${minute}`}
+  timePickerParseValue={value => `${value.hour}:${value.minute}`}
 />
 
 ```
